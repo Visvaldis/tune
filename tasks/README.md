@@ -25,8 +25,11 @@ See everything at a glance: `ls tasks/todo tasks/doing tasks/done`
 
 ---
 
-## Protocol — "do the next task"
+## Protocol – "do the next task"
 
+0. **Verify or create the task.** Before starting, check that the work is not already represented in
+   `tasks/doing/` or `tasks/done/`. If no task file exists yet, create one from `tasks/_TEMPLATE.md`
+   in `tasks/todo/` with the right id, scope, and dependencies; then continue with the protocol below.
 1. **Pick it.** The next task is the **lowest-numbered file in `tasks/todo/`** whose every
    `depends_on:` id already lives in `tasks/done/`. If the lowest is blocked, skip to the next unblocked.
 2. **Claim it.** `git mv tasks/todo/<file> tasks/doing/` (and commit) — this is your lock.
@@ -47,6 +50,8 @@ See everything at a glance: `ls tasks/todo tasks/doing tasks/done`
 The board is built for this. To avoid collisions:
 
 - **One agent per task file.** Claiming = `git mv` into `doing/`. Two agents never hold the same file.
+- **No untracked starts.** If work is missing from the board, create the task file first, then claim it
+  into `doing/` before touching product code or content.
 - **Pick disjoint work.** Different interactives live in different files (`src/components/interactive/
   <Name>.tsx` + `<name>.data.ts`) — those never conflict.
 - **Shared touch-points are append-only.** `src/i18n/ui.ts` (add a namespaced block at the end),
@@ -79,6 +84,21 @@ One row per article (the unit you keep extending). Status = which folder the fil
 | Article (`slug`) | Topic | Interactive id | Task |
 |---|---|---|---|
 | _(no articles yet — add rows as content is authored)_ | | | |
+
+---
+
+## Playground queue
+
+Standalone learning tools are specified in `../docs/PLAYGROUND.md`.
+
+| Order | Tool | Task | Depends on |
+|---|---|---|---|
+| 400 | Playground foundation | `400-feature-playground-foundation` | — |
+| 410 | Beat Lab | `410-playground-beat-lab` | foundation |
+| 420 | Fretboard Map | `420-playground-fretboard-map` | foundation |
+| 430 | Chord Recipe | `430-playground-chord-recipe` | foundation |
+| 440 | Strum Grid | `440-playground-strum-grid` | foundation |
+| 450 | Interval Ear | `450-playground-interval-ear` | foundation |
 
 ---
 
