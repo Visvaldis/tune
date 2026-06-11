@@ -11,6 +11,10 @@ claimed in `tasks/doing/` or finished in `tasks/done/`. If the needed task file 
 create it from `tasks/_TEMPLATE.md` in `tasks/todo/`, then immediately claim it by moving it to
 `tasks/doing/` before implementation. Do not start untracked work.
 
+When finishing a task, commit **only the changes for that task** unless the user explicitly says
+otherwise. Do not bundle unrelated edits, other agents' work, or incidental workspace changes into
+the same commit.
+
 ## What you are building
 
 **Лад / Tune** — a highly interactive, **bilingual (English + Ukrainian)** website that

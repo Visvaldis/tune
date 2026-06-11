@@ -41,7 +41,10 @@ See everything at a glance: `ls tasks/todo tasks/doing tasks/done`
 5. **Verify.** Walk the task's Acceptance checklist. Run `npm run build` — must finish with **0 errors**.
 6. **Finish.** Append a `## Done — YYYY-MM-DD` note (what shipped, files touched, any `TODO(owner)`,
    follow-ups), then `git mv tasks/doing/<file> tasks/done/`.
-7. **Spawn follow-ups.** If the work revealed new work, add task files to `tasks/todo/`.
+7. **Commit cleanly.** Make a commit that includes **only the changes for that task**, unless the
+   user explicitly asked for a different batching strategy. Do not scoop up unrelated working tree
+   changes or another agent's edits.
+8. **Spawn follow-ups.** If the work revealed new work, add task files to `tasks/todo/`.
 
 ---
 
