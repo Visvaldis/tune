@@ -4,6 +4,17 @@ Build spec for a coding agent. Read this fully before writing code. This file is
 **what we're building** (the product). How each interactive island is built lives in
 `tasks/CONVENTIONS.md`; the live backlog lives in `tasks/`; narrative status in `PROGRESS.md`.
 
+## Task intake rule
+
+Before starting any new work, check the task board in `tasks/` and verify the task is not already
+claimed in `tasks/doing/` or finished in `tasks/done/`. If the needed task file does not exist yet,
+create it from `tasks/_TEMPLATE.md` in `tasks/todo/`, then immediately claim it by moving it to
+`tasks/doing/` before implementation. Do not start untracked work.
+
+When finishing a task, commit **only the changes for that task** unless the user explicitly says
+otherwise. Do not bundle unrelated edits, other agents' work, or incidental workspace changes into
+the same commit.
+
 ## What you are building
 
 **Лад / Tune** — a highly interactive, **bilingual (English + Ukrainian)** website that
@@ -68,7 +79,15 @@ with your articles, then write a spec for each interactive in the section below.
 
 | Article (`slug`) | Topic | Interactive id | Status |
 |---|---|---|---|
-| _(no articles yet — add rows here as content is authored)_ | | | |
+| `notes-and-staff` | theory | `staff-explorer` | Building |
+| `what-is-rhythm` | rhythm | `rhythm-tapper` | Building |
+| `anatomy-of-guitar` | guitar | `guitar-anatomy` | Building |
+| `intervals` | ear | `interval-trainer` | Building |
+| `major-scale` | theory | `scale-builder` | Building |
+| `basic-chords` | harmony | `chord-explorer` | Building |
+| `time-signatures` | rhythm | `time-conductor` | Building |
+| `circle-of-fifths` | harmony | `circle-spinner` | Building |
+| `tuning-guitar` | guitar | `tuner-practice` | Building |
 
 ## Interactive component specs (one per article)
 
@@ -77,14 +96,51 @@ draws on. Keep specs concrete (name the exact inputs/outputs). **No invented dat
 date, and word must trace to the article; if you need a value the article lacks, mark it
 `TODO(owner)`.
 
-### Spec format (copy per interactive)
+### `staff-explorer` — for `notes-and-staff`
+An SVG treble-clef staff with a draggable note. The reader moves the note vertically; it snaps to
+each line/space, displays the note name (C4-C6), and plays its pitch via Web Audio. On mobile,
+tap-to-select replaces drag. Arrow keys move the note; Space plays it.
 
-<!-- Add one spec block per interactive as articles are authored. Format:
+### `rhythm-tapper` — for `what-is-rhythm`
+A visual metronome (pulsing circle) and tap recorder. The reader taps Spacebar/screen to record a
+rhythm over 4 bars at an adjustable BPM (60-180). Taps appear as dots on a beat grid and can be
+played back. Preset patterns (on-beat, syncopated, offbeat) available for comparison.
 
-### `interactive-id` — for `article-slug`
-One-paragraph pitch: what the reader manipulates and what changes on screen. List the concrete
-elements (controls, panels, modes) and the article-sourced data each uses. Note any second tab/mode.
--->
+### `guitar-anatomy` — for `anatomy-of-guitar`
+A full acoustic-guitar SVG illustration with 10-12 hoverable/tappable regions (body, soundhole,
+bridge, neck, fretboard, frets, nut, headstock, tuning pegs, strings). Selecting a part highlights it
+and shows its name + one-sentence function. Tab cycles parts; Enter expands detail.
+
+### `interval-trainer` — for `intervals`
+Two modes. **Quiz**: plays two notes, reader picks the interval from buttons (m2, M2, m3, M3, P4, P5,
+octave); shows correct/incorrect + score. **Practice**: reader selects an interval, hears it, and
+sees a reference-song mnemonic. Direction (ascending/descending) and difficulty toggles.
+
+### `scale-builder` — for `major-scale`
+A 2-octave SVG piano keyboard (C4-C6). Reader picks a root note from a dropdown, then clicks 8 keys
+to build the major scale. A "Check" button validates against W-W-H-W-W-W-H. Guide mode highlights
+the expected next key. "Play scale" plays the correct sequence ascending.
+
+### `chord-explorer` — for `basic-chords`
+Seven chord buttons (Em, Am, C, G, D, E, A). Selecting one shows a 6-string chord diagram with fret
+dots, finger numbers, X/O markers, and a "Strum" button that plays the chord via Web Audio.
+String-by-string mode lets the reader hear each string individually.
+
+### `time-conductor` — for `time-signatures`
+Four time-signature buttons (2/4, 3/4, 4/4, 6/8). Selecting one starts a visual metronome with accent
+patterns (strong vs. weak beats highlighted). BPM slider (60-180). Beat counter adapts to signature
+length. Reduced-motion: static color-change on beat instead of pulse.
+
+### `circle-spinner` — for `circle-of-fifths`
+An SVG circle with 12 major keys on the outer ring and their relative minors on the inner ring.
+Clicking a key highlights it and its neighbours, shows sharps/flats count, relative minor/major, and
+plays the tonic chord. Arrow keys cycle keys; Enter plays chord.
+
+### `tuner-practice` — for `tuning-guitar`
+Six string buttons labelled E-A-D-G-B-E (6th to 1st). Clicking a string plays its reference tone at
+the correct frequency (82-330 Hz). Optional pitch-matching challenge: a simulated detuned tone is
+played, and the reader adjusts up/down to match. Visual tuner needle shows too-low / in-tune /
+too-high.
 
 ## Design direction
 
