@@ -53,3 +53,10 @@ Scaffolded from the starter kit. Rethemed to **Лад / Tune** (music & guitar b
 Topics: theory, rhythm, guitar, harmony, ear — each with light/dark accent colors.
 Removed demo content and SampleToy island. 0 articles; shell builds green with 0 errors.
 Task board seeded (empty — no article tasks yet).
+
+### 2026-06-11 — Playground roadmap
+
+Specified a standalone bilingual playground with six learning tools: Beat Lab, Fretboard Map,
+Chord Recipe, Strum Grid, Interval Ear, and a configurable Mini Jam Builder. Added a shared foundation task plus one parallel-ready
+implementation task per tool in the `4xx` backlog range. Each task requires explicit provenance for
+music data and conventions before shipping.

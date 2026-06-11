@@ -99,6 +99,7 @@ Standalone learning tools are specified in `../docs/PLAYGROUND.md`.
 | 430 | Chord Recipe | `430-playground-chord-recipe` | foundation |
 | 440 | Strum Grid | `440-playground-strum-grid` | foundation |
 | 450 | Interval Ear | `450-playground-interval-ear` | foundation |
+| 460 | Mini Jam Builder | `460-playground-mini-jam` | foundation |
 
 ---
 
