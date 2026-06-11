@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PlaygroundCard from '../../../components/playground/PlaygroundCard.astro';
+import { playgroundTools } from '../../../data/playground/toolCatalog';
+import { LANGS, useTranslations, type Lang } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={t('playground.title')} description={t('playground.subtitle')}>
+  <section class="container hero">
+    <p class="kicker">{t('playground.kicker')}</p>
+    <h1>{t('playground.title')}</h1>
+    <p>{t('playground.subtitle')}</p>
+  </section>
+
+  <section class="container">
+    <h2 class="section-title">{t('playground.tools')}</h2>
+    <div class="pg-grid">
+      {playgroundTools.map((tool) => (
+        <PlaygroundCard lang={lang} tool={tool} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

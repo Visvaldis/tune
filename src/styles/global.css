@@ -127,6 +127,50 @@ h1,h2,h3 { line-height: 1.15; letter-spacing: -0.01em; }
 .chip { background: var(--accent-soft); color: var(--accent); padding: .15rem .55rem; border-radius: 999px;
   font-weight: 700; text-decoration: none; font-size: .75rem; }
 
+/* ---- Playground ------------------------------------------- */
+.pg-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); padding-bottom: 3rem; }
+.pg-card { display: grid; gap: 1rem; text-decoration: none; background: var(--bg-elev); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); transition: transform .15s, box-shadow .15s, border-color .15s; }
+.pg-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+.pg-card-preview { min-height: 5.5rem; display: grid; place-items: center; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--accent-soft), color-mix(in srgb, var(--accent) 12%, var(--bg-elev))); }
+.pg-card-icon { font-size: 2.3rem; }
+.pg-card-copy h2 { font-size: 1.15rem; }
+.pg-card-copy p { color: var(--muted); margin-top: .4rem; }
+.pg-card-meta { display: flex; align-items: center; justify-content: space-between; gap: .75rem; flex-wrap: wrap; color: var(--muted); font-size: .9rem; }
+.pg-card-action { font-weight: 700; color: var(--accent); }
+
+.pg-page { padding-block: 2rem 3rem; }
+.pg-back { display: inline-flex; align-items: center; gap: .4rem; margin-bottom: 1rem; color: var(--muted); font-weight: 600; text-decoration: none; }
+.pg-back:hover { color: var(--accent); }
+.pg-hero { max-width: var(--maxw-prose); margin-bottom: 1.5rem; }
+.pg-hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-block: .4rem .8rem; }
+.pg-hero-copy { color: var(--muted); font-size: 1.1rem; }
+.pg-hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; color: var(--muted); margin-top: 1rem; }
+
+.pg-tool-frame { max-width: var(--maxw); border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-elev);
+  box-shadow: var(--shadow); padding: clamp(1rem, 3vw, 1.5rem); }
+.pg-tool-head { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.pg-tool-head h2 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-top: .3rem; }
+.pg-tool-label { text-transform: uppercase; letter-spacing: .08em; color: var(--accent); font-size: .76rem; font-weight: 700; }
+.pg-tool-controls { display: flex; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
+.pg-tool-panels { display: grid; gap: 1rem; }
+.pg-tool-panels.has-aside { grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); }
+.pg-tool-panel { border: 1px solid var(--line); border-radius: var(--radius-sm); background: color-mix(in srgb, var(--bg) 70%, var(--bg-elev));
+  padding: 1rem; min-width: 0; }
+.pg-tool-footer { margin-top: 1rem; color: var(--muted); font-size: .92rem; }
+.pg-status { display: inline-flex; align-items: center; padding: .35rem .7rem; border-radius: 999px; font-size: .82rem;
+  font-weight: 700; white-space: nowrap; border: 1px solid var(--line); }
+.pg-status-neutral { background: var(--bg); color: var(--text); }
+.pg-status-accent { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+.pg-status-muted { background: transparent; color: var(--muted); }
+.pg-placeholder { display: grid; gap: .8rem; }
+.pg-placeholder h3 { font-size: 1.05rem; }
+.pg-placeholder p { color: var(--muted); }
+.pg-audio-note { display: grid; gap: .5rem; }
+.pg-audio-note h3 { font-size: 1rem; }
+.pg-audio-note p { color: var(--muted); }
+
 /* ---- Article ---------------------------------------------- */
 .article-head { max-width: var(--maxw-prose); padding-top: 2rem; }
 .article-head h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
@@ -194,5 +238,9 @@ h1,h2,h3 { line-height: 1.15; letter-spacing: -0.01em; }
 /* ---- Mobile ----------------------------------------------- */
 @media (max-width: 560px) {
   .brand small { display: none; }
+  .bar { align-items: flex-start; }
+  .nav-links { flex-wrap: wrap; justify-content: flex-end; }
   .pager { grid-template-columns: 1fr; }
+  .pg-tool-head { flex-direction: column; }
+  .pg-tool-panels.has-aside { grid-template-columns: 1fr; }
 }

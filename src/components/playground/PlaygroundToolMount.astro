@@ -1,0 +1,19 @@
+---
+import type { Lang } from '../../i18n/utils';
+import type { PlaygroundToolId } from '../../data/playground/toolCatalog';
+import BeatLab from './BeatLab.tsx';
+import FretboardMap from './FretboardMap.tsx';
+import ChordRecipe from './ChordRecipe.tsx';
+import StrumGrid from './StrumGrid.tsx';
+import IntervalEar from './IntervalEar.tsx';
+import MiniJam from './MiniJam.tsx';
+
+const { lang, toolId } = Astro.props as { lang: Lang; toolId: PlaygroundToolId };
+---
+
+{toolId === 'beat-lab' && <BeatLab client:visible lang={lang} />}
+{toolId === 'fretboard-map' && <FretboardMap client:visible lang={lang} />}
+{toolId === 'chord-recipe' && <ChordRecipe client:visible lang={lang} />}
+{toolId === 'strum-grid' && <StrumGrid client:visible lang={lang} />}
+{toolId === 'interval-ear' && <IntervalEar client:visible lang={lang} />}
+{toolId === 'mini-jam' && <MiniJam client:visible lang={lang} />}

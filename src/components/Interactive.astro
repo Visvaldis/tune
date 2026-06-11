@@ -21,13 +21,40 @@ const desc = info?.desc[lang] ?? '';
 // to the styled Placeholder (which shows the interactiveInfo blurb).
 // -------------------------------------------------------------------------
 // Import built islands here (see steps above).
+import StaffExplorer from './interactive/StaffExplorer.tsx';
+import RhythmTapper from './interactive/RhythmTapper.tsx';
+import GuitarAnatomy from './interactive/GuitarAnatomy.tsx';
+import IntervalTrainer from './interactive/IntervalTrainer.tsx';
+import ScaleBuilder from './interactive/ScaleBuilder.tsx';
+import TimeConductor from './interactive/TimeConductor.tsx';
+import CircleSpinner from './interactive/CircleSpinner.tsx';
+import ChordExplorer from './interactive/ChordExplorer.tsx';
+import TunerPractice from './interactive/TunerPractice.tsx';
 
-const BUILT = new Set<string>([]);
+const BUILT = new Set<string>([
+  'staff-explorer',
+  'rhythm-tapper',
+  'guitar-anatomy',
+  'interval-trainer',
+  'scale-builder',
+  'time-conductor',
+  'circle-spinner',
+  'chord-explorer',
+  'tuner-practice',
+]);
 const isBuilt = BUILT.has(id);
 ---
 
 <div class="interactive-wrap" data-interactive={id}>
-  {/* Add conditional renders for built islands here. */}
+  {id === 'staff-explorer' && <StaffExplorer client:visible lang={lang} />}
+  {id === 'rhythm-tapper' && <RhythmTapper client:visible lang={lang} />}
+  {id === 'guitar-anatomy' && <GuitarAnatomy client:visible lang={lang} />}
+  {id === 'interval-trainer' && <IntervalTrainer client:visible lang={lang} />}
+  {id === 'scale-builder' && <ScaleBuilder client:visible lang={lang} />}
+  {id === 'time-conductor' && <TimeConductor client:visible lang={lang} />}
+  {id === 'circle-spinner' && <CircleSpinner client:visible lang={lang} />}
+  {id === 'chord-explorer' && <ChordExplorer client:visible lang={lang} />}
+  {id === 'tuner-practice' && <TunerPractice client:visible lang={lang} />}
 
   {!isBuilt && (
     <Placeholder

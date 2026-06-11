@@ -1,0 +1,31 @@
+---
+import { localizedPath, useTranslations, type Lang } from '../../i18n/utils';
+import { topicNames } from '../../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  topic: string;
+  title: string;
+  description: string;
+}
+
+const { lang, topic, title, description } = Astro.props;
+const t = useTranslations(lang);
+const topicName = topicNames[topic]?.[lang] ?? topic;
+---
+
+<section class="container pg-page">
+  <a class="pg-back" href={localizedPath(lang, 'playground')}>← {t('playground.back')}</a>
+
+  <header class="pg-hero">
+    <p class="kicker">{t('playground.kicker')}</p>
+    <h1>{title}</h1>
+    <p class="pg-hero-copy">{description}</p>
+    <div class="pg-hero-meta">
+      <span class="chip">{topicName}</span>
+      <span>{t('playground.learningGoal')}</span>
+    </div>
+  </header>
+
+  <slot />
+</section>

@@ -1,0 +1,28 @@
+---
+import { localizedPath, useTranslations, type Lang } from '../../i18n/utils';
+import { topicNames } from '../../i18n/ui';
+import type { PlaygroundToolDefinition } from '../../data/playground/toolCatalog';
+
+interface Props {
+  lang: Lang;
+  tool: PlaygroundToolDefinition;
+}
+
+const { lang, tool } = Astro.props;
+const t = useTranslations(lang);
+const topicName = topicNames[tool.topic]?.[lang] ?? tool.topic;
+---
+
+<a class="pg-card" href={localizedPath(lang, 'playground', tool.slug)} data-topic={tool.topic}>
+  <div class="pg-card-preview" aria-hidden="true">
+    <span class="pg-card-icon">{tool.icon}</span>
+  </div>
+  <div class="pg-card-copy">
+    <h2>{t(tool.titleKey)}</h2>
+    <p>{t(tool.goalKey)}</p>
+  </div>
+  <div class="pg-card-meta">
+    <span class="chip">{topicName}</span>
+    <span class="pg-card-action">{t('playground.startTool')}</span>
+  </div>
+</a>

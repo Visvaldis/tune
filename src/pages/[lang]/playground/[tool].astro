@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PlaygroundToolLayout from '../../../components/playground/PlaygroundToolLayout.astro';
+import PlaygroundToolMount from '../../../components/playground/PlaygroundToolMount.astro';
+import { playgroundTools, playgroundToolMap, type PlaygroundToolId } from '../../../data/playground/toolCatalog';
+import { LANGS, useTranslations, type Lang } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) =>
+    playgroundTools.map((tool) => ({
+      params: { lang, tool: tool.slug },
+    }))
+  );
+}
+
+const { lang, tool } = Astro.params as { lang: Lang; tool: PlaygroundToolId };
+const t = useTranslations(lang);
+const entry = playgroundToolMap[tool];
+---
+
+<BaseLayout
+  lang={lang}
+  title={t(entry.titleKey)}
+  description={t(entry.goalKey)}
+  topic={entry.topic}
+>
+  <PlaygroundToolLayout
+    lang={lang}
+    topic={entry.topic}
+    title={t(entry.titleKey)}
+    description={t(entry.goalKey)}
+  >
+    <PlaygroundToolMount lang={lang} toolId={entry.id} />
+  </PlaygroundToolLayout>
+</BaseLayout>
